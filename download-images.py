@@ -7,7 +7,6 @@ from selenium.webdriver.chrome.options import Options
 
 
 def download(name, limit):
-    scroll_value = 0
     images = []
     count = 0
 
@@ -41,14 +40,14 @@ def download(name, limit):
     except FileExistsError:
         pass
     
-    # print(images)
+    file_name = name.replace(" ", "_")
     for image in images:
         src = image.get_attribute('src')
         if src != None:
             try:
                 count+=1
-                urllib.request.urlretrieve(str(src), os.path.join('downloads','image'+str(count)+'.jpg'))
+                urllib.request.urlretrieve(str(src), os.path.join('downloads', file_name+str(count)+'.jpg'))
             except:
                 print('fail')
 
-download("Medidor de energia", 100)
+download("Medidor de energia analogico", 500)
